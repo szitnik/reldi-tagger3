@@ -179,3 +179,13 @@ The output of the lemmatiser learning process is a file with the `.lexicon.guess
 ```
 $ ./train_lemmatiser.py sl.lexicon
 ```
+
+## Programmatic usage
+
+```
+   reldiTagger = ReldiTagger3()
+    reldiTagger.load_models("sl", lemmatise=True)
+    reldiTagger.processSentence([['1.2.1.25-29', 'Kupil'], ['1.2.2.31-33', 'sem'], ['1.2.3.35-40', 'banane'], ['1.2.4.42-43', 'in'], ['1.2.5.45-48', 'kruh'], ['1.2.6.49-49', '.']])
+
+Parameter for the processSentence can be retrieved by the reldi-tokeniser3.
+```

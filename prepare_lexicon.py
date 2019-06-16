@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import sys
-import cPickle as pickle
+import pickle
 import marisa_trie
 
 def lcs(s1, s2):
@@ -31,7 +31,7 @@ lemma_freq=pickle.load(open(sys.argv[1]))
 
 for line in sys.stdin:
   try:
-    token,lemma,msd=line.decode('utf8').strip().split('\t')
+    token,lemma,msd=line.strip().split('\t')
   except:
     continue
   token=token.lower()
@@ -42,7 +42,7 @@ for line in sys.stdin:
   #newlemma=lemma==prevlemma
   if key not in lexicon:
     lexicon[key]={}#{lemma_rule:1}
-  lexicon[key][lemma.encode('utf8')]=lemma_freq.get(lemma.lower()+'_'+msd[:2],0)
+  lexicon[key][lemma]=lemma_freq.get(lemma.lower()+'_'+msd[:2],0)
 
 for key in lexicon.iterkeys():
   lexicon[key]=sorted(lexicon[key].items(),key=lambda x:-x[1])[0][0]

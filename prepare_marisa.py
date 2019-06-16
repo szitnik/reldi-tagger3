@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import cPickle as pickle
+import pickle
 import marisa_trie
 import sys
 
@@ -39,7 +39,7 @@ l=[]
 for key in e:
   if key.startswith('_'):
     for value in e[key]:
-      l.append((reverse(key),value.encode('utf8').zfill(9)))
+      l.append((reverse(key),value.zfill(9)))
 trie = marisa_trie.RecordTrie('sssssssss',l)
 pickle.dump(trie,open(sys.argv[1]+'.marisa','w'),1)
 """
@@ -70,8 +70,8 @@ memory_msd=set()
 for line in sys.stdin:
   try:
     token,lemma,msd=line.strip().split('\t')
-    token=token.decode('utf8')
-    #lemma=lemma.decode('utf8')
+    token=token
+    #lemma=lemma
   except:
     continue
   #lemma=str(extract_rule(token.lower(),lemma.lower())).replace(' ','')

@@ -4,7 +4,7 @@ from sklearn.feature_extraction import DictVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.pipeline import Pipeline
-import cPickle as pickle
+import pickle
 import sys
 
 def suffix(token,n):
@@ -43,7 +43,7 @@ if __name__=='__main__':
     p.fit(x,y)
     #print p.predict(extract_features(u'kolege'))
     #break
-    print msd
+    print(msd)
     models[msd]=p
 
   pickle.dump(models,open(sys.argv[1]+'.guesser','w'),1)
