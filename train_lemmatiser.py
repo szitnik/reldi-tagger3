@@ -22,7 +22,7 @@ def extract_features_lemma(token):
   return features
 
 if __name__=='__main__':
-  lexicon=pickle.load(open(sys.argv[1]+'.train'))
+  lexicon=pickle.load(open(sys.argv[1]+'.train', 'rb'), fix_imports=True, encoding="bytes")
 
   train={}
   for token,msd,label in lexicon:
@@ -46,4 +46,4 @@ if __name__=='__main__':
     print(msd)
     models[msd]=p
 
-  pickle.dump(models,open(sys.argv[1]+'.guesser','w'),1)
+  pickle.dump(models,open(sys.argv[1]+'.guesser','wb'),1)

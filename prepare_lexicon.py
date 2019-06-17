@@ -4,10 +4,10 @@ import pickle
 import marisa_trie
 
 def lcs(s1, s2):
-  m = [[0] * (1 + len(s2)) for i in xrange(1 + len(s1))]
+  m = [[0] * (1 + len(s2)) for i in range(1 + len(s1))]
   longest, x_longest, y_longest = 0, 0, 0
-  for x in xrange(1, 1 + len(s1)):
-    for y in xrange(1, 1 + len(s2)):
+  for x in range(1, 1 + len(s1)):
+    for y in range(1, 1 + len(s2)):
       if s1[x - 1] == s2[y - 1]:
         m[x][y] = m[x - 1][y - 1] + 1
         if m[x][y] > longest:
@@ -27,7 +27,7 @@ def extract_rule(token,lemma):
 lexicon={}
 lexicon_train=set()
 
-lemma_freq=pickle.load(open(sys.argv[1]))
+lemma_freq=pickle.load(open(sys.argv[1], 'rb'), fix_imports=True, encoding="bytes")
 
 for line in sys.stdin:
   try:
@@ -44,11 +44,11 @@ for line in sys.stdin:
     lexicon[key]={}#{lemma_rule:1}
   lexicon[key][lemma]=lemma_freq.get(lemma.lower()+'_'+msd[:2],0)
 
-for key in lexicon.iterkeys():
-  lexicon[key]=sorted(lexicon[key].items(),key=lambda x:-x[1])[0][0]
+for key in lexicon.keys():
+  lexicon[key]=sorted(lexicon[key].items(),key=lambda x:-x[1])[0][0].encode()
 
 trie=marisa_trie.BytesTrie(lexicon.items())
 
 #print lexicon.keys()[0],lexicon[lexicon.keys()[0]]
-pickle.dump(trie,open(sys.argv[2],'w'),1)
-pickle.dump(lexicon_train,open(sys.argv[2]+'.train','w'),1)
+pickle.dump(trie,open(sys.argv[2],'wb'),1)
+pickle.dump(lexicon_train,open(sys.argv[2]+'.train','wb'),1)

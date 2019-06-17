@@ -45,10 +45,10 @@ pickle.dump(trie,open(sys.argv[1]+'.marisa','w'),1)
 """
 
 def lcs(s1, s2):
-  m = [[0] * (1 + len(s2)) for i in xrange(1 + len(s1))]
+  m = [[0] * (1 + len(s2)) for i in range(1 + len(s1))]
   longest, x_longest, y_longest = 0, 0, 0
-  for x in xrange(1, 1 + len(s1)):
-    for y in xrange(1, 1 + len(s2)):
+  for x in range(1, 1 + len(s1)):
+    for y in range(1, 1 + len(s2)):
       if s1[x - 1] == s2[y - 1]:
         m[x][y] = m[x - 1][y - 1] + 1
         if m[x][y] > longest:
@@ -76,7 +76,7 @@ for line in sys.stdin:
     continue
   #lemma=str(extract_rule(token.lower(),lemma.lower())).replace(' ','')
   token=reverse('_'+token.lower())
-  memory_msd.add((token,msd))
+  memory_msd.add((token,msd.encode()))
   #memory_msd.add((token,msd.zfill(9)))
   #memory_lemma.add((token,lemma.zfill(40)))
 
@@ -85,7 +85,7 @@ trie_msd=marisa_trie.BytesTrie(memory_msd)
 #trie_lemma=marisa_trie.RecordTrie('s'*40,memory_lemma)
 #trie={'msd':trie_msd,'lemma':trie_lemma}
 
-pickle.dump(trie_msd,open(sys.argv[1],'w'),1)
+pickle.dump(trie_msd,open(sys.argv[1],'wb'),1)
 
 """
 from time import time
