@@ -76,12 +76,6 @@ $ echo 'Moj alat radi dobro.' | ../tokeniser/tokeniser.py hr | ./tagger.py hr
 ```
 Run `./tagger.py -h` for additional options.
 
-If you want to use both the tagger and the lemmatiser, you should train the lemmatiser as described below OR get the files for guessing the lemmas from these locations:
-
-* http://nlp.ffzg.hr/data/reldi/hr.lexicon.guesser
-* http://nlp.ffzg.hr/data/reldi/sr.lexicon.guesser
-* http://nlp.ffzg.hr/data/reldi/sl.lexicon.guesser
-
 At the end of the process, for Croatian you should have the following files: `hr.lexicon` and `hr.lexicon.guesser`.
 
 Once you have everything in place, just add the `-l` flag to the tagger:
